@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: claude-usage 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/SalvadorCardona/gnome-claude-usage/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/hermez-agency/gnome-claude-usage/issues\n"
 "POT-Creation-Date: 2026-08-27 15:00+0200\n"
 "PO-Revision-Date: 2026-08-27 15:00+0200\n"
 "Language-Team: français\n"

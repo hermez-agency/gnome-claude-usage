@@ -1,4 +1,4 @@
-![gnome-claude-usage](https://raw.githubusercontent.com/SalvadorCardona/brand-assets/main/projects/gnome-claude-usage/banner.png)
+![gnome-claude-usage](https://raw.githubusercontent.com/hermez-agency/brand-assets/main/projects/gnome-claude-usage/banner.png)
 
 # Claude Usage
 
@@ -42,7 +42,7 @@ it, and the site marks it incompatible until then).
 From source, which works right now:
 
 ```bash
-git clone https://github.com/SalvadorCardona/gnome-claude-usage.git
+git clone https://github.com/hermez-agency/gnome-claude-usage.git
 cd gnome-claude-usage
 ./install.sh
 gnome-extensions enable claude-usage@salvadorcardona.github.io
@@ -134,7 +134,7 @@ extension itself.
 A Hermez product — [hermez.dev](https://hermez.dev). The extension has a page of
 its own at [hermez.dev/gnome-claude-usage](https://hermez.dev/gnome-claude-usage/),
 and the source lives on
-[GitHub](https://github.com/SalvadorCardona/gnome-claude-usage).
+[GitHub](https://github.com/hermez-agency/gnome-claude-usage).
 
 ## Licence
 

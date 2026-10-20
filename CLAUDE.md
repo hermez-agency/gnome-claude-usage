@@ -20,7 +20,7 @@ Installation en dev (chaque fichier du dépôt est ensuite lié dans
 l'extension installée) :
 
 ```bash
-git clone https://github.com/SalvadorCardona/gnome-claude-usage.git
+git clone https://github.com/hermez-agency/gnome-claude-usage.git
 cd gnome-claude-usage
 ./install.sh
 gnome-extensions enable claude-usage@salvadorcardona.github.io
