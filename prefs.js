@@ -120,12 +120,12 @@ export default class ClaudeUsagePreferences extends ExtensionPreferences {
 
         const author = new Adw.ActionRow({
             title: _('Author'),
-            subtitle: 'Salvador Cardona — cardona.digital',
+            subtitle: `${_('A Hermez product')} — hermez.dev`,
             activatable: true,
         });
         author.add_suffix(new Gtk.Image({icon_name: 'adw-external-link-symbolic'}));
         author.connect('activated', () => {
-            new Gtk.UriLauncher({uri: 'https://cardona.digital'}).launch(window, null, null);
+            new Gtk.UriLauncher({uri: 'https://hermez.dev'}).launch(window, null, null);
         });
         about.add(author);
     }

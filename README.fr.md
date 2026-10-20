@@ -2,7 +2,7 @@
 
 # Claude Usage
 
-*[English version](README.md)* · [Le site](https://cardona.digital/gnome-claude-usage/) · [extensions.gnome.org](https://extensions.gnome.org/extension/10785/claude-usage/)
+*[English version](README.md)* · [Le site](https://hermez.dev/gnome-claude-usage/) · [extensions.gnome.org](https://extensions.gnome.org/extension/10785/claude-usage/)
 
 Un indicateur GNOME Shell pour votre consommation **Claude Code** : un camembert
 dans la barre supérieure pour la fenêtre de cinq heures en cours, et le détail au
@@ -119,9 +119,8 @@ comme la jauge de l'extension.
 
 ## Auteur
 
-Écrit et maintenu par Salvador Cardona, développeur web —
-[site de Salvador Cardona](https://cardona.digital). L’extension a sa propre page,
-[cardona.digital/gnome-claude-usage](https://cardona.digital/gnome-claude-usage/), et
+Un produit Hermez — [hermez.dev](https://hermez.dev). L’extension a sa propre page,
+[hermez.dev/gnome-claude-usage](https://hermez.dev/gnome-claude-usage/), et
 les sources sont sur
 [GitHub](https://github.com/SalvadorCardona/gnome-claude-usage).
 

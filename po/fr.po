@@ -217,6 +217,10 @@ msgstr "À propos"
 msgid "Author"
 msgstr "Auteur"
 
+#: prefs.js
+msgid "A Hermez product"
+msgstr "Un produit Hermez"
+
 #: extension.js
 msgid "%s: %s used"
 msgstr "%s : %s utilisés"
