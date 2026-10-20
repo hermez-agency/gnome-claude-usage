@@ -1,4 +1,4 @@
-![gnome-claude-usage](https://raw.githubusercontent.com/SalvadorCardona/brand-assets/main/projects/gnome-claude-usage/banner.png)
+![gnome-claude-usage](https://raw.githubusercontent.com/hermez-agency/brand-assets/main/projects/gnome-claude-usage/banner.png)
 
 # Claude Usage
 
