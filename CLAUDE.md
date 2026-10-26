@@ -35,7 +35,7 @@ Empaquetage pour extensions.gnome.org :
 ./pack.sh
 ```
 
-`pack.sh` produit le zip attendu (`glib-compile-schemas` + `tools/po2mo.py`)
+`pack.sh` produit le zip attendu (`tools/po2mo.py`, sans `gschemas.compiled` : inutile dès GNOME 45)
 sans passer par `gnome-extensions pack`, volontairement — voir « Pièges »
 ci-dessous.
 
