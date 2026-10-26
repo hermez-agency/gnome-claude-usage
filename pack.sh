@@ -12,7 +12,6 @@ OUT="${1:-$SRC/dist}"
 UUID="claude-usage@salvadorcardona.github.io"
 ZIP="$OUT/$UUID.shell-extension.zip"
 
-glib-compile-schemas "$SRC/schemas"
 python3 "$SRC/tools/po2mo.py" "$SRC/po/fr.po" "$SRC/locale/fr/LC_MESSAGES/claude-usage.mo"
 
 STAGE="$(mktemp -d)"

@@ -10,5 +10,5 @@
   ],
   "settings-schema": "org.gnome.shell.extensions.claude-usage",
   "gettext-domain": "claude-usage",
-  "version-name": "1.0.0"
+  "version-name": "1.0.1"
 }

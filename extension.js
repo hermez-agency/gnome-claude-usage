@@ -83,7 +83,7 @@ class Indicator extends PanelMenu.Button {
         this._data = null;
         this._error = null;
         this._busy = false;
-        this._destroyed = false;
+        this._cancellable = new Gio.Cancellable();
         this._timeoutId = 0;
         this._countdownId = 0;
         // Pour chaque limite, les seuils déjà notifiés dans la fenêtre en cours.
@@ -275,7 +275,7 @@ class Indicator extends PanelMenu.Button {
     }
 
     async refresh() {
-        if (this._busy || this._destroyed)
+        if (this._busy)
             return;
 
         this._busy = true;
@@ -290,37 +290,37 @@ class Indicator extends PanelMenu.Button {
             this._error = null;
             // Sans attendre, et sans conséquence si l'écriture échoue.
             History.record(this._data);
-            if (!this._destroyed) {
-                this._notifyThresholds();
-                this._recordHistory();
-            }
+            this._notifyThresholds();
+            this._recordHistory();
         } catch (error) {
-            // Une annulation n'est pas un échec : c'est nous qui l'avons voulue.
-            if (!error?.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED)) {
-                this._error = error instanceof Usage.UsageError
-                    ? error
-                    : new Usage.UsageError('unknown', String(error));
-                console.warn(`[claude-usage] ${this._error.code} ${this._error.detail}`);
-            }
-        } finally {
-            // Un relevé dure cinq secondes : l'extension a pu être désactivée
-            // entre-temps, et il n'y a plus rien à redessiner.
-            this._busy = false;
-            if (!this._destroyed) {
-                this._refreshButton.reactive = true;
-                this._refreshItem.setSensitive(true);
-                this._refreshSpinner.stop();
-                this._render();
-            }
+            // Une annulation vient de destroy() : un relevé dure cinq secondes,
+            // l'extension a pu être désactivée entre-temps, il n'y a plus rien
+            // à redessiner.
+            if (error?.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+                return;
+            this._error = error instanceof Usage.UsageError
+                ? error
+                : new Usage.UsageError('unknown', String(error));
+            console.warn(`[claude-usage] ${this._error.code} ${this._error.detail}`);
         }
+
+        this._busy = false;
+        this._refreshButton.reactive = true;
+        this._refreshItem.setSensitive(true);
+        this._refreshSpinner.stop();
+        this._render();
     }
 
     /* --- historique --- */
 
     async _loadHistory() {
-        const stored = await History.loadHistory();
-        if (this._destroyed)
+        let stored;
+        try {
+            stored = await History.loadHistory(this._cancellable);
+        } catch (_e) {
+            // Annulé par destroy() : plus rien à dessiner.
             return;
+        }
         // Un relevé a pu arriver pendant la lecture : on garde les deux.
         this._history = [...stored, ...this._history].sort((a, b) => a.t - b.t);
         this._renderTrend();
@@ -525,7 +525,8 @@ class Indicator extends PanelMenu.Button {
     }
 
     destroy() {
-        this._destroyed = true;
+        this._cancellable.cancel();
+        this._cancellable = null;
         if (this._timeoutId) {
             GLib.source_remove(this._timeoutId);
             this._timeoutId = 0;

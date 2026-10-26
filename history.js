@@ -35,12 +35,17 @@ function historyFile() {
     return Gio.File.new_for_path(GLib.build_filenamev([dir, 'history.json']));
 }
 
-/** Lit l'historique ; un fichier absent ou abîmé donne un historique vide. */
-export async function loadHistory() {
+/**
+ * Lit l'historique ; un fichier absent ou abîmé donne un historique vide.
+ * Une annulation, elle, remonte : l'appelant n'a plus rien à en faire.
+ */
+export async function loadHistory(cancellable = null) {
     try {
-        const [bytes] = await historyFile().load_contents_async(null);
+        const [bytes] = await historyFile().load_contents_async(cancellable);
         return sanitize(JSON.parse(new TextDecoder().decode(bytes)));
-    } catch (_e) {
+    } catch (e) {
+        if (e?.matches?.(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+            throw e;
         return [];
     }
 }
