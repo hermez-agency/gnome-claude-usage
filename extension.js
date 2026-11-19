@@ -100,7 +100,7 @@ class Indicator extends PanelMenu.Button {
                 this._render();
         });
 
-        this.menu.connect('open-state-changed', (_menu, open) => {
+        this._menuOpenId = this.menu.connect('open-state-changed', (_menu, open) => {
             if (open && this._isStale())
                 this.refresh();
         });
@@ -538,6 +538,10 @@ class Indicator extends PanelMenu.Button {
         if (this._settingsChangedId) {
             this._settings.disconnect(this._settingsChangedId);
             this._settingsChangedId = 0;
+        }
+        if (this._menuOpenId) {
+            this.menu.disconnect(this._menuOpenId);
+            this._menuOpenId = 0;
         }
         Usage.cancel();
         this._settings = null;
