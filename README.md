@@ -98,6 +98,8 @@ extension.js   the indicator: panel pie, menu, refresh loop
 usage.js       runs the CLI and parses its answer — no interface text
 format.js      turns the CLI's English into the user's language; no GNOME import, so it is testable
 pie.js         the ring, drawn with Cairo
+trend.js       the seven-day trend curve in the menu, drawn with Cairo
+history.js     the local history of readings, kept in files on your machine
 prefs.js       the settings window
 po/, tools/    translations and the .po → .mo compiler
 tests/         the parser's tests and their CLI samples
