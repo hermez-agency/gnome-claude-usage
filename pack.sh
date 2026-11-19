@@ -17,9 +17,14 @@ python3 "$SRC/tools/po2mo.py" "$SRC/po/fr.po" "$SRC/locale/fr/LC_MESSAGES/claude
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 
-for item in metadata.json extension.js prefs.js usage.js pie.js trend.js history.js format.js stylesheet.css schemas locale; do
+for item in metadata.json extension.js prefs.js usage.js pie.js trend.js history.js format.js stylesheet.css locale; do
     cp -r "$SRC/$item" "$STAGE/"
 done
+
+# Le schéma seul, sans le gschemas.compiled qu'install.sh laisse dans le clone :
+# GNOME 45+ compile lui-même, et extensions.gnome.org refuse l'archive qui l'a.
+mkdir -p "$STAGE/schemas"
+cp "$SRC/schemas/"*.gschema.xml "$STAGE/schemas/"
 
 mkdir -p "$OUT"
 rm -f "$ZIP"
